@@ -1,0 +1,23 @@
+document.addEventListener("DOMContentLoaded", () => {
+const form = document.querySelector("form");
+
+xhr.open("POST","server.php",true);
+
+form.addEventListener("submit", (e) => {
+    const roll = document.getElementById("roll").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (roll === "") {
+    alert("Roll number cannot be empty.");
+    e.preventDefault();
+    return;
+    }
+
+    if (!emailPattern.test(email)) {
+    alert("Please enter a valid email address.");
+    e.preventDefault();
+    return;
+    }
+});
+});
