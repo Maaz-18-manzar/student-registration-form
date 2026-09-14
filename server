@@ -1,0 +1,26 @@
+<?php
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // Sanitize and capture inputs
+    $name   = htmlspecialchars(trim($_POST['name'] ?? ''));
+    $roll   = htmlspecialchars(trim($_POST['roll'] ?? ''));
+    $email  = filter_var(trim($_POST['email'] ?? ''), FILTER_SANITIZE_EMAIL);
+    $branch = htmlspecialchars(trim($_POST['branch'] ?? ''));
+    $gender = htmlspecialchars(trim($_POST['gender'] ?? ''));
+    $dob    = htmlspecialchars(trim($_POST['dob'] ?? ''));
+
+    // Server-side check
+    if (empty($name) || empty($roll) || empty($email) || empty($branch) || empty($gender) || empty($dob)) {
+        die("Error: All fields are required.");
+    }
+
+    echo "<h2>Registration Details Received</h2>";
+    echo "<p><strong>Name:</strong> {$name}</p>";
+    echo "<p><strong>Roll Number:</strong> {$roll}</p>";
+    echo "<p><strong>Email:</strong> {$email}</p>";
+    echo "<p><strong>Branch:</strong> {$branch}</p>";
+    echo "<p><strong>Gender:</strong> {$gender}</p>";
+    echo "<p><strong>DOB:</strong> {$dob}</p>";
+} else {
+    echo "Invalid request method.";
+}
+?>
